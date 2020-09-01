@@ -63,7 +63,6 @@ def generateAutomata(type):
         print('Generating Non-deterministic finite automata with lambda transitions')
 
 element = ''
-print()
 typeMatch = typePattern.match(fileHandle.readline())
 if typeMatch:
     for line in fileHandle:

@@ -1,4 +1,5 @@
 # way to navigate the app
+from Controller.AutomataFileReader import AutomataFileReader
 from Entity.DFA import DFA
 from Entity.State import State
 from Entity.Transition import Transition
@@ -12,13 +13,15 @@ t2 = Transition('q1', 'q1', 'b')
 q0 = State('q0', False, [t0, t1])
 q1 = State('q1', True, [t2])
 
-# alphabet dict
+# alphabet set
 a = {'a', 'b'}
-# states dict
+# states set
 s = {q0, q1}
 # initial state q0
 # instance dfa object
 fda0 = DFA(a, s, q0)
 
-print('-- done --')
-fda0.showData()
+# from this point the first code is executed
+#fda0.showData()
+fileReader = AutomataFileReader()
+fileReader.openFile()

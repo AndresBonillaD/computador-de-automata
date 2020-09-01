@@ -4,7 +4,7 @@ from Entity.State import State
 
 
 class DFA:
-    alphabet = {}
+    alphabet = set()
     states = {}
     initialState = State
 
