@@ -1,6 +1,6 @@
 # way to navigate the app
 from Controller.AutomataFileReader import AutomataFileReader
-from Entity.DFA import DFA
+from Entity.FiniteStateMachine import FiniteStateMachine
 from Entity.State import State
 from Entity.Transition import Transition
 
@@ -19,9 +19,11 @@ a = {'a', 'b'}
 s = {q0, q1}
 # initial state q0
 # instance dfa object
-fda0 = DFA(a, s, q0)
+fda0 = FiniteStateMachine(a, s, q0)
 
-# from this point the first code is executed
+# start
 #fda0.showData()
-fileReader = AutomataFileReader()
-fileReader.openFile()
+print()
+fda0.computeWord('aabcb')
+#fileReader = AutomataFileReader()
+#fileReader.openFile()
