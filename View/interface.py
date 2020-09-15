@@ -22,8 +22,9 @@ s = {q0, q1}
 fda0 = FiniteStateMachine(a, s, q0)
 
 # start
+
 #fda0.showData()
 print()
-fda0.computeWord('aabcb')
+fda0.computeWord('ab')
 #fileReader = AutomataFileReader()
 #fileReader.openFile()

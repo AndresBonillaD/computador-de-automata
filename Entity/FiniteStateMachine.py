@@ -9,6 +9,7 @@ class FiniteStateMachine:
     initialState = State
     controlUnit = State
 
+    # constructor of the class fsm
     def __init__(self, alphabet, states, initialState):
         self.alphabet = alphabet
         self.states = states
@@ -18,18 +19,17 @@ class FiniteStateMachine:
     # block to process strings
     def computeWord(self, word):
         print('Computing string: "{0}" , Length: {1} ...'.format(word, len(word)))
-
         if len(word) == 1:
-            # base case
+            # base case -
             print('base case')
-            # change control unit
+            # change control unit - last one to process the end symbol in the word
             for tr in self.controlUnit.transitions:
                 if tr.symbol == word[0]:
                     print('- Transition found: {0}:{1}>{2}'.format(tr.currentState, tr.symbol, tr.destinyState))
                     print('change control unit to {0}'.format(tr.destinyState))
                     # change control unit
                     self.controlUnit = self.controlUnitChange(tr.destinyState)
-
+            # check for the final state reached in the machine
             if self.controlUnit.isAccepted:
                 print('ACCEPTED STRING! the state {0} is Accepted.'.format(self.controlUnit.tag))
             else:
@@ -67,7 +67,7 @@ class FiniteStateMachine:
             for tr in state.transitions:
                 print(tr.currentState, tr.destinyState, tr.symbol)
 
-    # return a state from a tag
+    # return a state from a tag string
     def controlUnitChange(self, tag):
         for state in self.states:
             if tag == state.tag:
