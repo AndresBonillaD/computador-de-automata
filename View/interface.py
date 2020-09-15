@@ -4,12 +4,8 @@ from Entity.FiniteStateMachine import FiniteStateMachine
 from Entity.State import State
 from Entity.Transition import Transition
 
-# hardcoded dfa
+# hardcoded dfa L = { a*b+ }
 # instance transitions
-#t0 = Transition('q0', 'q0', 'a')
-#t1 = Transition('q0', 'q1', 'b')
-#t2 = Transition('q1', 'q1', 'b')
-    # transitions as dict {key=symbol: value=List of destiny states}
 q0Transitions = {'a': ['q0'], 'b': ['q1']}
 q1Transitions = {'b': ['q1']}
 # instance states
@@ -27,7 +23,7 @@ fda0 = FiniteStateMachine(a, s, q0)
 # start
 
 # fda0.showData()
-fda0.computeWord('aabbbb')
+fda0.computeWord('')
 
 # fileReader = AutomataFileReader()
 # fileReader.openFile()

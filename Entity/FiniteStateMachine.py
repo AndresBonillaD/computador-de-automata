@@ -18,23 +18,24 @@ class FiniteStateMachine:
         self.controlUnit = self.initialState
 
     # block to process strings
+    # frontier case, empty word!!!!!!!!
     def computeWord(self, word):
         print('Computing string: "{0}" , Length: {1} ...'.format(word, len(word)))
-        print('-')
+        print('- - -')
         if len(word) == 1:
             # base case -
             print('base case')
-            print('Control Unit: {0} symbol to process: {1}'.format(self.controlUnit.tag, word[0]))
+            print('Control Unit: {0}.   Symbol to process: {1}'.format(self.controlUnit.tag, word[0]))
 
             # change control unit - last one to process the end symbol in the word
-            for symbol in self.controlUnit.transitions:
-                if symbol == word[0]:
-                    # change the CU to the only destinyState (dfa)
-                    desStates = self.controlUnit.transitions[symbol]
-                    self.controlUnit = self.controlUnitChange(desStates[0])
-                    print('Transition Found: {0}:{1}>{2}'.format(self.controlUnit.tag, symbol, desStates[0]))
-                    print('-')
-                    print()
+            if word[0] not in self.controlUnit.transitions:
+                    print('NO transition found')
+            else:
+                # change the CU to the only destinyState (dfa)
+                desStates = self.controlUnit.transitions[word[0]]
+                print('Transition Found: {0}:{1}>{2}'.format(self.controlUnit.tag, word[0], desStates[0]))
+                print('- - -')
+                self.controlUnit = self.controlUnitChange(desStates[0])
 
             # check for the final state reached in the machine
             if self.controlUnit.isAccepted:
@@ -45,18 +46,21 @@ class FiniteStateMachine:
             # recursive case
             # change CU to the destiny states in the transitions dict in the current CU
             print('recursive case')
-            print('Control Unit: {0} symbol to process: {1}'.format(self.controlUnit.tag, word[0]))
+            print('Control Unit: {0}.   Symbol to process: {1}'.format(self.controlUnit.tag, word[0]))
 
-            # check the possibility of computing the first symbol
-            for symbol in self.controlUnit.transitions:
-                if symbol == word[0]:
-                    # change the CU to the only destinyState (dfa)
-                    desStates = self.controlUnit.transitions[symbol]
-                    print('Transition Found: {0}:{1}>{2}'.format(self.controlUnit.tag, symbol, desStates[0]))
-                    print('-')
-                    self.controlUnit = self.controlUnitChange(desStates[0])
-                    # recursive calling
-                    self.computeWord(word[1:])
+            # check the possibility of computing the first symbol of word
+            if word[0] not in self.controlUnit.transitions:
+                    print('NO transitions found for {0}:{1}'.format(self.controlUnit.tag, word[0]))
+            else:
+                # change the CU to the only destinyState (dfa)
+                desStates = self.controlUnit.transitions[word[0]]
+                print('Transition Found: {0}:{1}>{2}'.format(self.controlUnit.tag, word[0], desStates[0]))
+                print('- - -')
+                self.controlUnit = self.controlUnitChange(desStates[0])
+                # recursive calling
+                self.computeWord(word[1:])
+
+
 
 
     # method to print on console the info representing the automata
