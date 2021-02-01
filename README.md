@@ -1,2 +1,4 @@
-# tc-final-project
-Proyecto de software Teoria de la Computacion 2020-2
+# proyecto de computacion de automatas
+Maquinas de estsdo finito
+automatas con pila
+maquina de Turing
