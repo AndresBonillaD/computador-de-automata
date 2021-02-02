@@ -4,7 +4,7 @@ class State:
     # transitions can be made by using dictionaries {'symbol' : [DestinyStates]}
     tag = ''
     isAccepted = False
-    transitions = list()
+    transitions = dict()
 
     def __init__(self, tag, accepted, transitions):
         self.tag = tag
