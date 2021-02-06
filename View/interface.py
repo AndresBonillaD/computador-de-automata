@@ -1,12 +1,12 @@
 # way to navigate the app
-from Controller.core import core
+from Controller.Core import Core
 
 
 def main():
 
     #### START
 
-    myAppCore = core()
+    myAppCore = Core()
     myAppCore.menuLoop()
 
     #### end of main()

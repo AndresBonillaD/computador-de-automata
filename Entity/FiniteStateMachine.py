@@ -61,8 +61,10 @@ class FiniteStateMachine:
             if word[0] not in self.controlUnit.transitions:
                     print('NO transitions found for {0}:{1}'.format(self.controlUnit.tag, word[0]))
                     print('REJECTED STRING')
+                    #retur 0
             else:
                 # change the CU to the only destinyState (dfa)
+                # desStates = [ possible states to go with transition word[0] ]
                 desStates = self.controlUnit.transitions[word[0]]
                 print('Transition Found: {0}:{1}>{2}'.format(self.controlUnit.tag, word[0], desStates[0]))
                 print('- - -')
