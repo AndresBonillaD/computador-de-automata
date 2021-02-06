@@ -1,3 +1,4 @@
+from Controller.AutomataController import AutomataController
 from Entity.FiniteStateMachine import FiniteStateMachine
 from Entity.State import State
 
@@ -45,14 +46,14 @@ class Core:
                 self.automatas[0] = fda0
                 print(self.automatas)
                 # fda0.showData()
-                #word = input('Compute word: ')
-                #fda0.computeWord(word)
                 continue
             if case == 'memoryFsm':
                 id = int(input('Enter fsm id: '))
                 select_fsm = self.automatas.get(id)
-                print(type(select_fsm))
+
                 # aqui debe ir el casteo de AutomataController
+                automataController = AutomataController()
+                automataController.automataMenuLoop(select_fsm)
                 continue
             if case == 'nothing':
                 print('INVALID COMMAND')
