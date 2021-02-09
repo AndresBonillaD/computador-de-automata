@@ -63,20 +63,20 @@ class Core:
     def switcher(self):
 
         switcher = {
-            '0': 'case0',
-            '1': 'case1',
-            '2': 'memoryFsm',
-            '3': 'automataDemo',
+            '1': 'memoryFsm',
+            '2': 'automataDemo',
+            '3': '...',
+            '4': '...',
             'exit': 'exit'
         }
 
         print('-----   Menu   -----')
         print('''
-        0: Case0
-        1: case1
-        2: fsm on memory
-        3: Automata Demo
-        exit: salir
+        1: fsm on memory
+        2: Automata Demo
+        3: ...
+        4: ...
+        exit: Salir.
             ''')
 
         argument = input('Ingrese comando: ')

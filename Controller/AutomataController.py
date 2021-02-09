@@ -1,11 +1,6 @@
 from Entity.FiniteStateMachine import FiniteStateMachine
 
-
 class AutomataController:
-
-    #  {string:bool}
-    wordList = dict()
-
 
 
     def automataMenuLoop(self, automata):
@@ -17,7 +12,15 @@ class AutomataController:
 
             if case == 'CW':
                 word = input('Type the word to be used: ')
-                automata.computeWord(word)
+                res = automata.computeWord(word)
+                automata.wordList[word] = res
+                print(' resultado: ')
+                print(automata.wordList)
+                # restores the control unit to the initial position
+                automata.controlUnit = automata.initialState
+                continue
+            if case == 'showdata':
+                automata.showData()
                 continue
             if case == 'exit':
                 print('### exit Automata ###')
@@ -29,19 +32,19 @@ class AutomataController:
     def switcher(self):
 
         switcher = {
-            '0': 'CW',
-            '1': 'case1',
-            '2': '',
+            '1': 'CW',
+            '2': 'showdata',
             '3': '',
+            '4': '',
             'exit': 'exit'
         }
 
         print('-----   Automata Menu   -----')
         print('''
-        0: ComputeWord
-        1: ...
-        2: ...
+        1: Compute Word
+        2: Show Automata Data
         3: ...
+        4: ...
         exit: salir
             ''')
 

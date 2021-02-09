@@ -9,8 +9,8 @@ class FiniteStateMachine:
     states = set()
     initialState = State
     controlUnit = State
-
-    accepted = 0
+    #  {string:bool}
+    wordList = dict()
 
     # constructor of the class fsm
     def __init__(self, alphabet, states, initialState):
@@ -28,6 +28,7 @@ class FiniteStateMachine:
         print('- - -')
         if len(word) == 0:
             print("cadena vacia")
+            return 0
         elif len(word) == 1:
             #### BASE CASE
             print('base case')
@@ -49,8 +50,10 @@ class FiniteStateMachine:
             # satisfaction conditions for Acceptance of the word
             if self.controlUnit.isAccepted and not remaningSymbol:
                 print('ACCEPTED STRING! the state {0} is Accepted.'.format(self.controlUnit.tag))
+                return True
             else:
                 print('REJECTED STRING state {0} is NOT Accepted'.format(self.controlUnit.tag))
+                return False
         else:
             #### RECURSIVE CASE
             # change CU to the destiny states in the transitions dict in the current CU
@@ -59,9 +62,9 @@ class FiniteStateMachine:
 
             # check the possibility of computing the first symbol of word
             if word[0] not in self.controlUnit.transitions:
-                    print('NO transitions found for {0}:{1}'.format(self.controlUnit.tag, word[0]))
-                    print('REJECTED STRING')
-                    #retur 0
+                print('NO transitions found for {0}:{1}'.format(self.controlUnit.tag, word[0]))
+                print('REJECTED STRING')
+                return False
             else:
                 # change the CU to the only destinyState (dfa)
                 # desStates = [ possible states to go with transition word[0] ]
@@ -70,7 +73,7 @@ class FiniteStateMachine:
                 print('- - -')
                 self.controlUnit = self.controlUnitChange(desStates[0])
                 # recursive calling CONSUME SYMBOL
-                self.computeWord(word[1:])
+                return self.computeWord(word[1:])
 
     # method to print on console the info representing the automata
     def showData(self):
